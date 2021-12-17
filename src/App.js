@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Products from "components/Products";
+import Checkout from "components/Checkout";
+import { products } from "constants/products";
+import "./App.css";
 
 function App() {
+  const [selectedProduct, setSelectedProduct] = useState(null);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Products products={products} selectProduct={setSelectedProduct} />
+          }
+        />
+        <Route
+          path="/checkout"
+          element={<Checkout selectedProduct={selectedProduct} />}
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
