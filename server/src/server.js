@@ -22,7 +22,7 @@ app.use(cors());
 // });
 app.use(bodyParser.json());
 
-router.post("/stripe/charge", postCharge);
+app.post("/stripe/charge", postCharge);
 
 router.all("*", (_, res) =>
   res.json({ message: "please make a POST request to /stripe/charge" })
